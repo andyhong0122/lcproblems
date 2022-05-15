@@ -19,6 +19,7 @@ Use a queue because words in back need to come to front
 
 Time: O(n)
 Space: O(n)
+*/
 
 function reverseWords(s) {
     let result = []
@@ -39,9 +40,6 @@ function reverseWords(s) {
     
     return result.join(" ")
 }
-
-
-*/
 
 
 /// implementing custom method for built-in methods
