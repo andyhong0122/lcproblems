@@ -21,18 +21,18 @@ Time: O(n)
 Space: O(n)
 */
 
-function reverseWords(s) {
+function reverseWords(s) { // " ab cd ef "
     let result = []
     let word = []
 
     for(char of s) {
-        if(char === " ") {
-            if(word.length) {
-                result.unshift(word.join(""))
-                word = []
+        if(char === " ") { // " " // " "
+            if(word.length) { // 0 // 2
+                result.unshift(word.join("")) // " " // "ab" -> result
+                word = [] // [] // [] 
             }
-        } else {
-            word.push(char)
+        } else { 
+            word.push(char) // " " // "a" // "b"
         }
     }
     
