@@ -6,6 +6,8 @@
 /// Sliding window
 
 // Kadane's algorithm
+// O(n), iterate over input once
+// O(1), keeping only constants
 var maxSubArray = function(nums) {
     let maxSum = nums[0];
     let currentSum = nums[0];
