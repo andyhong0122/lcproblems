@@ -43,6 +43,7 @@ var longestConsecutive = function(nums) {
     let set = new Set(nums);
     
     for (let number of set) {
+        // if N-1 is in Set, no need to start counter yet; we only want to begin counting when we find the lowest N in a potential sequence.
         if (set.has(number - 1)) {
             continue;
         }
