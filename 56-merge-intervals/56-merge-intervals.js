@@ -17,8 +17,11 @@ intervals length can be 1
 4. at the end of the loop return the results array
 */
 
+// o(n log n); we're visiting each element once, but we're using sort
+// o(log n); we don't need auxiliary space because we're returning the array, but the sorting algorithm takes O(log n ) space
 var merge = function(intervals) {
     if(intervals.length === 1) return intervals;
+    
     let results = [];
     intervals.sort((a,b) => a[0] - b[0])
     
@@ -31,6 +34,7 @@ var merge = function(intervals) {
         // check bounds; if it's the last element we don't even have to compare, just push it in
         if(i < length - 1 && curr[1] >= next[0]){
             
+            // then, check for the ending number
             if (curr[1] >= next[1]) {
                 results.push([curr[0], curr[1]]);
             } else {
@@ -38,8 +42,7 @@ var merge = function(intervals) {
             }
             i++;
             
-        // would only run if it's last element and has no elements to compare OR
-        // intervals are not in range
+        // would only run if it's last element and has no elements to compare OR intervals are not in range
         } else {
             results.push(curr);
             results.push(next);
