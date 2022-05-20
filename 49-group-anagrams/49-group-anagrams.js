@@ -24,3 +24,27 @@ var groupAnagrams = function(strs) {
 }
 
 
+// using charCodeAt()
+// 
+var groupAnagrams = function(strs) {
+    let dict = {};
+    
+    for (let word of strs) {
+        const arr = new Array(26).fill(0);
+        
+        for (let char of word) {
+            let index = char.charCodeAt() - 97;
+            arr[index]++;
+        }
+
+        let key = arr.join("#");
+        if (dict[key]) {
+            dict[key].push(word);
+        } else {
+            dict[key] = [word] ;
+        }
+    }
+    
+    return Object.values(dict);
+}
+
