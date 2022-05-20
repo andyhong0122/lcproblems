@@ -23,8 +23,8 @@ function inorderTraversal(root) {
   const res = []; 
 
     // as long as our our stack has nodes inside, we have not finished our traversal
-    // or as long as root is not null
-  while (root || stack.length) { // QUESTION; why check for root?
+    // or as long as root is not null 
+  while (root || stack.length) { // check for root because we want to 
     if (root) {
       stack.push(root); // if current node is not null, defer it to the stack
       root = root.left; // move current node to the left; we're moving to the most left as possible
