@@ -40,6 +40,7 @@ function inorderTraversal(root) {
 }
 
 
+/*
 function inorderTraversal(root) {
     let s = [root];
     let res = [];
@@ -54,8 +55,9 @@ function inorderTraversal(root) {
     
     return res;
 }
+*/
 
-
+/*
 var inorderTraversal = function(root) {
     if(!root) return [] // base case
     
@@ -64,5 +66,4 @@ var inorderTraversal = function(root) {
     
     return [ ...left, root.val, ...right];
 }
-
-
+*/
