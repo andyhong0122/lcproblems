@@ -3,9 +3,7 @@
  * @return {number}
  */
 
-/// Sliding window
-
-// Kadane's algorithm
+// Kadane's algorithm - sliding window
 // O(n), iterate over numbers once
 // O(1), using only constants
 var maxSubArray = function(nums) {
