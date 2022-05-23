@@ -47,13 +47,12 @@ var goodNodes = function(root) {
     let goodNodes = 0;
     dfs(root, root.val);
     
-    function dfs(node, maxSoFar) {
-        if (node == null) return 0;
-        
+    function dfs(node, maxSoFar) {        
         if (node.val >= maxSoFar) {
             goodNodes++;
         }
         
+        // for each sides, call recursive function with [node, max]
         if (node.left) dfs(node.left, Math.max(node.val, maxSoFar));
         if (node.right) dfs(node.right, Math.max(node.val, maxSoFar));
     }
