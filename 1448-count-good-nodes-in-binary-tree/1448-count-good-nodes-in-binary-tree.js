@@ -16,7 +16,6 @@
 // O(n), we visit node once
 // O(n), our stack will contain a max of N/2 nodes if the tree is skewed to either side
 var goodNodes = function(root) { // [3,1,4,3,null,1,5]
-    if(root.left == null && root.right == null) return 1;
     let stack = [];
     stack.push([root, root.val]);
     
