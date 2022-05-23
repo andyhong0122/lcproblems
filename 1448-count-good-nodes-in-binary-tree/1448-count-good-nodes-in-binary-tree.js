@@ -43,8 +43,12 @@ var goodNodes = function(root) { // [3,1,4,3,null,1,5]
 };
 
 // recursive approach - dfs
+// O(n), visit nodes once
+// O(n), our call stack can be as large as the height H of the tree; so in the worst case scenario, H = N, if tree is skewed.
 var goodNodes = function(root) { 
+    // add globally
     let goodNodes = 0;
+    
     dfs(root, root.val);
     
     function dfs(node, maxSoFar) {        
