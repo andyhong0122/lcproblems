@@ -6,26 +6,15 @@
 /// Sliding window
 
 // Kadane's algorithm
-// O(n), iterate over input once
-// O(1), keeping only constants
+// O(n), iterate over numbers once
+// O(1), using only constants
 var maxSubArray = function(nums) {
-    let maxSum = nums[0];
-    let currentSum = nums[0];
-    
-    for (let i = 1; i < nums.length; i++) {
-        currentSum = Math.max(nums[i], currentSum + nums[i]); // get current max
-        maxSum = Math.max(currentSum, maxSum); // compare prev max with current max (was the current number worth keeping?)
-    }
-    
-    return maxSum;
-};
-
-var maxSubArray = function(nums) {
+    // set curr and max to first number
     let curr = nums[0];
     let max = nums[0];
     
     for (let i = 1; i < nums.length; i++) {
-        // here we find whether adding the nums[i] to curr was "worth" it
+        // find whether adding the nums[i] to curr was "worth" it
         curr = Math.max(nums[i], curr + nums[i]);
         max = Math.max(curr, max);
     }
