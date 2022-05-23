@@ -20,6 +20,19 @@ var maxSubArray = function(nums) {
     return maxSum;
 };
 
+var maxSubArray = function(nums) {
+    let curr = nums[0];
+    let max = nums[0];
+    
+    for (let i = 1; i < nums.length; i++) {
+        // here we find whether adding the nums[i] to curr was "worth" it
+        curr = Math.max(nums[i], curr + nums[i]);
+        max = Math.max(curr, max);
+    }
+    
+    return max;
+}
+
 
 /* Technically works, but will time out for large test cases
 // brute force o(n^2), o(n) 
