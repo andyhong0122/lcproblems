@@ -41,3 +41,22 @@ var goodNodes = function(root) { // [3,1,4,3,null,1,5]
     
     return goodNodes;
 };
+
+// recursive approach - dfs
+var goodNodes = function(root) { 
+    let goodNodes = 0;
+    dfs(root, root.val);
+    
+    function dfs(node, maxSoFar) {
+        if (node == null) return 0;
+        
+        if (node.val >= maxSoFar) {
+            goodNodes++;
+        }
+        
+        if (node.left) dfs(node.left, Math.max(node.val, maxSoFar));
+        if (node.right) dfs(node.right, Math.max(node.val, maxSoFar));
+    }
+    
+    return goodNodes;
+}
