@@ -3,8 +3,11 @@
  * @return {number}
  */
 
-// we can solve this using bfs;
+// we can solve this using bfs; for each 1 that we see, run bfs
 
+
+// o(m*n), input size can grow with grid dimensions
+// o(m*n), worse case scenario we can have m*n number of items in the queue if all numbers are 1 because we keep exploring
 const directions = [[1,0], [0,1], [-1,0], [0,-1]];
 
 var maxAreaOfIsland = function(grid) {
