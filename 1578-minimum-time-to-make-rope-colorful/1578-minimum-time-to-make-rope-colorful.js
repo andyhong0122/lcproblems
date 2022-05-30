@@ -7,6 +7,7 @@
 // two pointers
 
 // o(n), iterate over colors once
+// o(1), constant space
 var minCost = function(colors, neededTime) {
     if (colors.length === 1) return 0;
     
