@@ -4,7 +4,7 @@
  * @return {string[][]}
  */
 
-// two pointers
+// 
 
 var suggestedProducts = function(products, searchWord) { 
     if(!searchWord) return []
@@ -15,7 +15,6 @@ var suggestedProducts = function(products, searchWord) {
     
     let curr = "";
     let left = 0;
-    let right = products.length - 1
     
     // for each character in word, perform search on products list
     for (let i = 0; i < searchWord.length; i++) {
@@ -24,9 +23,9 @@ var suggestedProducts = function(products, searchWord) {
         // search through all products (remember they're sorted)
         for (let j = 0; j < products.length; j++) {
             
-            // narrow down the search in the proudcts list: as long as don't see any matching letters, increment left and right.
-            // For example: product = ["apple", "apron", "answer"]; if our search word is "b", then we want to skip over 
-            while(left < right && products[left].substring(0, i) !== curr) left++
+            // narrow down the search in the proudcts list: as long as don't see any matching letters, increment left
+            // For example: product = ["apple", "apron", "answer"]; if our search word is "b", then we want to skip over all our options
+            // while(left < products.length - 1 && products[left].substring(0, i) !== curr) left++;
             // while(right > left && products[right].substring(0, i) !== curr) right--
             
             if(suggestions.length === 3) break;
