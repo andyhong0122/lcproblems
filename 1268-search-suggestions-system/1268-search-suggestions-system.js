@@ -20,9 +20,7 @@ var suggestedProducts = function(products, searchWord) {
         
         // search through all products (remember they're sorted)
         for (let j = 0; j < products.length; j++) {
-
-            if(suggestions.length === 3) break;
-            else if(products[j].substring(0, i + 1) === curr) suggestions.push(products[j]);
+            if(!(suggestions.length === 3) && products[j].substring(0, i + 1) === curr) suggestions.push(products[j]);
         }
         list.push(suggestions);
         suggestions = [];
