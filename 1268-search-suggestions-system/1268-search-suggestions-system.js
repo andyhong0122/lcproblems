@@ -4,8 +4,6 @@
  * @return {string[][]}
  */
 
-// 
-
 var suggestedProducts = function(products, searchWord) { 
     if(!searchWord) return []
     
