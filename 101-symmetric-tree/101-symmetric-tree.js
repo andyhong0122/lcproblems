@@ -70,14 +70,14 @@ var isSymmetric = function(root) {
         // if either node1 or node2 are false || two nodes values are not equal, return false
         if(!node1 || !node2 || node1.val !== node2.val) return false;
         
-        // !important; push into queue in alternating fashion; this ensures when we pop on 71, 72 we're getting the             right child from left branch and left child from right branch, and vice versa 
+        // !important; push into queue in alternating fashion; this ensures when we pop on 71, 72 we're getting the right child from left branch and left child from right branch, and vice versa 
         q1.push(node1.left);
         q2.push(node2.right);
         q1.push(node1.right);
         q2.push(node2.left);
         
     }
-    // at the end of queue, all nodes have been visited from left and right subtree and if no different nodes were           found, return true
+    // at the end of queue, all nodes have been visited from left and right subtree and if no different nodes were found, return true
     return true;
 };
 
