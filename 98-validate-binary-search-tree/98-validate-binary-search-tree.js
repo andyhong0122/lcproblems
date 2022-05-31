@@ -28,7 +28,7 @@ var isValidBST = function(root) {
     
     const sortedArr = inOrder(root)
     
-    for(let i = 0; i < sortedArr.length; i++) {
+    for (let i = 0; i < sortedArr.length; i++) {
         if (sortedArr[i+1] <= sortedArr[i]) return false;
     }
     return true;
