@@ -52,3 +52,39 @@ Time Complexity: O(n)
 Space Complexity: worst case: O(n)
 */
 
+
+var isSymmetric = function(root) {
+    // if there is no root that means it is an empty tree
+    if(!root) return true;
+    
+    // start 2 queues one for left and one for right branch
+    let q1 = [];
+    let q2 = [];
+    
+    // push into queue the nodes we want to compare
+    q1.push(root.left);
+    q2.push(root.right)
+    
+    // traverse through both branches, until they are both exhausted at the same time
+    while (q1.length && q2.length){
+    // get current left and compare it to the right of each branch
+        let node1 = q1.shift();
+        let node2 = q2.shift();
+        // consolidate into 1 queue
+
+        // if both are null at the same time, just move on
+        if(!node1 && !node2) continue;
+        // if either node1 or node2 are false || two nodes values are not equal, return false
+        if(!node1 || !node2 || node1.val !== node2.val) return false;
+        
+        // !important; push into queue in alternating fashion; this ensures when we pop on 71, 72 we're getting the             right child from left branch and left child from right branch, and vice versa 
+        q1.push(node1.left);
+        q2.push(node2.right);
+        q1.push(node1.right);
+        q2.push(node2.left);
+        
+    }
+    // at the end of queue, all nodes have been visited from left and right subtree and if no different nodes were           found, return true
+    return true;
+};
+
