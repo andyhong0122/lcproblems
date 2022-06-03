@@ -32,6 +32,7 @@ var merge = function(intervals) {
     return stack;
 };
 
+// same, just using Math.max
 var merge = function(intervals) {
     if (intervals.length === 0) return [];
     
