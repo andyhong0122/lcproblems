@@ -3,92 +3,44 @@
  * @return {number[][]}
  */
 
-/*
-intervals array is sorted
-no negative numbers
-intervals length can be 1
+// merge intervals using stack
 
-1. for each intervals in the array
-2. if n[1] is greater than or equal to n+n[0], we know there's an overlap
-    when there's an overlap, construct an interval that encompasses all overlapping elements,
-    starting from the n[0] and ending on n+n[1].
-    add this interval to the results array
-3. if n[1] is less than n+1[0], they do not overlap
-4. at the end of the loop return the results array
-*/
-
-// o(n log n); we're visiting each element once, but we're using sort
-// o(log n); we don't need auxiliary space because we're returning the array, but the sorting algorithm takes O(log n ) space
+// o(n log n), we're iterating over the intervals once, but sorting takes longer
+// o(n), sorting algorithm uses log n space, but we're using stack anyways, which o(n) > o(log n)
 var merge = function(intervals) {
-    if(intervals.length === 1) return intervals;
-    
-    let results = [];
-    intervals.sort((a,b) => a[0] - b[0])
-    
-    let length = intervals.length;
-
-    for(let i = 0; i < length; i++) {
-        const curr = intervals[i];
-        const next = intervals[i+1];
-        
-        // check bounds; if it's the last element we don't even have to compare, just push it in
-        if(i < length - 1 && curr[1] >= next[0]){
-            
-            // then, check for the ending number
-            if (curr[1] >= next[1]) {
-                results.push([curr[0], curr[1]]);
-            } else {
-                results.push([curr[0]], next[1]);
-            }
-            i++;
-            
-        // would only run if it's last element and has no elements to compare OR intervals are not in range
-        } else {
-            results.push(curr);
-            results.push(next);
-            i++;
-        }
-    }
-    
-    return results;
-};
-
-
-
-/*
-We can do a one pass solution with a sorted intervals array
-after sorting the array, use a stack to store the first interval pair and begin a for loop;
-for every interval following the first, compare the ending time of the current interval[1] with the
-starting time of the consecutive interval[0]
-By comparing PREVIOUS and CURRENT instead of CURRENT and NEXT, we don't have worry about going out of bounds.
-*/
-
-var merge = function(intervals) {
-    if(intervals.length === 1) return intervals;
+    if (intervals.length == 0) return [];
     
     intervals.sort((a,b) => a[0] - b[0]);
-    
     let stack = [intervals[0]];
     
     for (let i = 1; i < intervals.length; i++) {
-        let prev = stack.pop();
-        let curr = intervals[i];
-        if (prev[1] >= curr[0]) {
-            stack.push( [prev[0], Math.max(prev[1], curr[1])] );
+        let first = stack.pop();
+        let second = intervals[i];
+        
+        if (first[1] >= second[0]) {
+            if(first[1] > second[1]) {
+                stack.push(first);
+            } else {
+                stack.push([first[0], second[1]]);
+            }
         } else {
-            stack.push(prev, curr);
+            stack.push(first);
+            stack.push(second);
         }
     }
     
     return stack;
-    // Time Complexity: O(Nlog(N))
-    // Space Complexity: O(N)
 };
 
-// (1) [[1,3], [2,6]] => [[1,6]]
-// (2) [[1,4],[2,3]] => [[1,4]]
-// Two possible cases to perform merger:
-// 1st case: we merge two arrays and obtain a bigger interval
-// 2nd case: one array absorbs another array and the size doesn't change.
-// Therefore, to cover both cases, when we merge two arrays, we perform the following:
-// [start of first arr, max(end of first arr, end of second arr)]
+// Intuitively, we need to compare the first and second numbers. 
+// if first[1] >= second[0], we know they should be merged.
+// else they should be separate
+
+// in the case of merging them, we still need to know the range - [1,10], [2,3] => [1,10] because first absorbs second range
+// to find this we can compare: if first[1] >= second[1], first absorbs the second, if not, second[1] is the end range
+
+// the tricky part though is we need to keep comparing the numbers instead of discarding it
+// for example, [1,10], [2,3], [3,4] => [1,10], where first absorbs second and third
+// so it's important to keep track of our previous number because we need to "reuse" it
+// we can use a stack to keep track of our previous number because the top of our stack wil always be the last number that we pushed in
+// so this will keep track of all the numbers we pushed in
