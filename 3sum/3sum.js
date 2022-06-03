@@ -40,7 +40,8 @@ function checkTarget(nums, i, triplets) {
         }
         
         if(target === 0) {
-            triplets.push([nums[i], nums[l], nums[r]]);    
+            triplets.push([nums[i], nums[l], nums[r]]);
+            
             while(nums[l] === nums[l+1]) { // skip duplicate numbers from left
                 l++;
             } 
