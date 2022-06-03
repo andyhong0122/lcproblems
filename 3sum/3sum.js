@@ -3,9 +3,10 @@
  * @return {number[][]}
  */
 
+// two pointers with an anchor point
+
 // o(n^2), increase in input size grows the elements to visit
 // o(log n), the only auxiliary space we're using is when we're sorting
-
 var threeSum = function(nums) { // [-4, -1, -1, 0, 1, 2]
     if(nums.length < 3) return []; 
     nums.sort((a,b) => a - b); // n log n, will not change overall time
